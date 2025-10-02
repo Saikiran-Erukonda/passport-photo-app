@@ -1,0 +1,532 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.workflow {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    position: relative;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    margin: 0 20px;
+}
+
+.step-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.step.active .step-circle {
+    background-color: #2575fc;
+    color: white;
+    box-shadow: 0 0 0 5px rgba(37, 117, 252, 0.2);
+}
+
+.step.completed .step-circle {
+    background-color: #4caf50;
+    color: white;
+}
+
+.step-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 100px;
+}
+
+.workflow-line {
+    position: absolute;
+    top: 25px;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background-color: #e0e0e0;
+    z-index: 1;
+}
+
+.content-area {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.step-content {
+    display: none;
+}
+
+.step-content.active {
+    display: block;
+}
+
+/* Improved text spacing */
+.step-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    line-height: 1.4;
+}
+
+.step-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    color: #555;
+    max-width: 800px;
+}
+
+.upload-area {
+    border: 2px dashed #2575fc;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.upload-area:hover {
+    background-color: #f0f7ff;
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: #2575fc;
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 12px 25px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    background-color: #1a68e8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid #2575fc;
+    color: #2575fc;
+}
+
+.btn-outline:hover {
+    background-color: #f0f7ff;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.image-preview {
+    max-width: 100%;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.control-group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+.control-label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 8px;
+}
+
+.slider-value {
+    min-width: 50px;
+    font-weight: 600;
+    color: #2575fc;
+    font-size: 0.9rem;
+    text-align: center;
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+}
+
+.slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #e0e0e0;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2575fc;
+    cursor: pointer;
+}
+
+.a4-preview {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 2mm;
+    width: 100%;
+    aspect-ratio: 1 / 1.414;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10mm;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+.photo-cell {
+    background-color: #f5f5f5;
+    border: 1px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.photo-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0.5px solid #666;
+    box-sizing: border-box;
+}
+
+/* Border styles */
+/* Border styles applied to photo-cell */
+.border-grey img {
+    border: 0.5px solid #666;
+}
+
+.border-black img {
+    border: 0.5px solid #000;
+}
+
+.border-blue img {
+    border: 0.5px solid #2575fc;
+}
+
+
+.print-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.option-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-card:hover {
+    border-color: #2575fc;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.option-card.selected {
+    border-color: #2575fc;
+    background-color: #f0f7ff;
+}
+
+/* Border options */
+.border-options {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.border-options h4 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.border-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.border-btn {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.border-btn:hover {
+    background: #e9ecef;
+}
+
+.border-btn.active {
+    background: #2575fc;
+    color: white;
+    border-color: #2575fc;
+}
+
+.print-instructions {
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px;
+    background: #e7f3ff;
+    border-radius: 5px;
+    border-left: 4px solid #2575fc;
+}
+
+.print-instructions p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Print Styles */
+@media print {
+    /* Hide everything except the A4 sheet */
+    body * {
+        visibility: hidden;
+    }
+    
+    /* Only show the A4 preview and its contents */
+    .a4-preview,
+    .a4-preview * {
+        visibility: visible;
+    }
+    
+    /* Position the A4 sheet properly for printing */
+    .a4-preview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+        background: white;
+    }
+    
+    /* Ensure photo grid prints correctly */
+    .photo-grid {
+        width: 100% !important;
+        height: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 10mm !important;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        page-break-inside: avoid;
+    }
+    
+    /* Ensure borders print correctly */
+    .photo-cell img {
+        border: 0.5px solid #000 !important;
+    }
+    
+    /* Hide all other elements */
+    .container,
+    header,
+    .workflow,
+    .content-area,
+    .step-content,
+    .button-group,
+    .print-options,
+    .border-options,
+    .print-instructions,
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* Enhanced print button */
+#printBtn {
+    background-color: #28a745;
+}
+
+#printBtn:hover {
+    background-color: #218838;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .workflow {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .step {
+        flex-direction: row;
+        margin-bottom: 15px;
+    }
+    
+    .step-circle {
+        margin-right: 15px;
+        margin-bottom: 0;
+    }
+    
+    .workflow-line {
+        display: none;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .controls {
+        flex-direction: column;
+    }
+    
+    .control-group {
+        min-width: 100%;
+    }
+    
+    .print-options {
+        flex-direction: column;
+    }
+    
+    .border-buttons {
+        flex-direction: column;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    .content-area {
+        padding: 20px;
+    }
+}
