@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passport Photo Automation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   script-src 'self' 'unsafe-inline'; 
+                   style-src 'self' 'unsafe-inline';
+                   img-src 'self' data:;">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Passport Photo Automation</h1>
+            <p class="subtitle">Upload, crop, enhance and print professional passport photos</p>
+        </header>
+        
+        <div class="workflow">
+            <div class="workflow-line"></div>
+            <div class="step active" id="step1">
+                <div class="step-circle">1</div>
+                <div class="step-label">Upload Photo</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Crop & Enhance</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-circle">3</div>
+                <div class="step-label">A4 Layout</div>
+            </div>
+            <div class="step" id="step4">
+                <div class="step-circle">4</div>
+                <div class="step-label">Preview & Print</div>
+            </div>
+        </div>
+        
+        <div class="content-area">
+            <!-- Step 1: Upload Photo -->
+            <div class="step-content active" id="step1-content">
+                <h2>Upload Your Photo</h2>
+                <p>Select a high-quality photo with good lighting for best results.</p>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📷</div>
+                    <h3>Click to upload or drag and drop</h3>
+                    <p>Supported formats: JPG, PNG, WEBP (Max 5MB)</p>
+                    <input type="file" id="fileInput" accept="image/*" class="hidden">
+                </div>
+                
+                <div class="image-preview hidden" id="imagePreview">
+                    <img id="previewImage" src="" alt="Preview">
+                </div>
+                
+                <div class="button-group">
+                    <div></div>
+                    <button class="btn" id="nextStep1" disabled>Next: Crop & Enhance</button>
+                </div>
+            </div>
+            
+            <!-- Step 2: Crop & Enhance -->
+            <div class="step-content" id="step2-content">
+                <h2>Crop & Enhance Your Photo</h2>
+                <p>Crop your photo to the standard passport size (3.5cm × 4.5cm) and adjust enhancement settings.</p>
+                
+                <div class="image-preview">
+                    <img id="cropPreview" src="" alt="Crop Preview">
+                </div>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label class="control-label">Brightness</label>
+                        <div class="slider-container">
+                            <input type="range" min="-50" max="50" value="0" class="slider" id="brightnessSlider">
+                            <span class="slider-value" id="brightnessValue">0</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Contrast</label>
+                        <div class="slider-container">
+                            <input type="range" min="-50" max="50" value="0" class="slider" id="contrastSlider">
+                            <span class="slider-value" id="contrastValue">0</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Saturation</label>
+                        <div class="slider-container">
+                            <input type="range" min="-50" max="50" value="0" class="slider" id="saturationSlider">
+                            <span class="slider-value" id="saturationValue">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-outline" id="backStep2">Back</button>
+                    <button class="btn" id="nextStep2">Next: A4 Layout</button>
+                </div>
+            </div>
+            
+            <!-- Step 3: A4 Layout -->
+            <div class="step-content" id="step3-content">
+                <h2>A4 Photo Sheet Layout</h2>
+                <p>Your passport photos arranged on an A4 sheet (5×5 grid, 25 photos total).</p>
+
+                <!-- <div class="border-options">
+                    <h4>Border Style</h4>
+                    <div class="border-buttons">
+                        <button class="border-btn active" data-color="grey">Grey Border</button>
+                        <button class="border-btn" data-color="black">Black Border</button>
+                        <button class="border-btn" data-color="none">No Border</button>
+                    </div>
+                </div> -->
+
+                <div class="a4-preview">
+                    <div class="photo-grid" id="photoGrid">
+                        <!-- Photo cells will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-outline" id="backStep3">Back</button>
+                    <button class="btn" id="nextStep3">Next: Preview & Print</button>
+                </div>
+            </div>
+            
+            <!-- Step 4: Preview & Print -->
+            <div class="step-content" id="step4-content">
+                <h2>Preview & Print</h2>
+                <p>Review your A4 photo sheet and print when ready.</p>
+                
+                <div class="print-instructions">
+                    <p><strong>Print Tips:</strong> Use "Actual Size" in print settings for best results</p>
+                    <p>Margins should be set to "None" or "Minimum" for proper alignment</p>
+                </div>
+                
+                <div class="a4-preview">
+                    <div class="photo-grid" id="finalGrid">
+                        <!-- Final photo grid for printing -->
+                    </div>
+                </div>
+                
+                <div class="print-options">
+                    <div class="option-card selected" data-quality="standard">
+                        <h3>Standard Quality</h3>
+                        <p>Good for most printers</p>
+                    </div>
+                    <div class="option-card" data-quality="high">
+                        <h3>High Quality</h3>
+                        <p>Best for professional printing</p>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-outline" id="backStep4">Back</button>
+                    <button class="btn" id="printBtn">🖨️ Print Photo Sheet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <footer class="bottom-line">
+    <p>Designed by <strong>Saikiran Erukonda</strong> |
+        Thanks to 
+    <img src="assets/github-icon.png" alt="Github" class="icon"> GitHub and 
+    <img src="assets/deepseek-icon.png" alt="Deepseek.ai" class="icon"> Deepseek.ai
+    </p>
+    <p>Dedicated to All Selfless, Helping, Hardworking People</p>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>
