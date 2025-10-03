@@ -404,7 +404,32 @@ h1 {
 .hidden {
     display: none;
 }
+.bottom-line {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    font-size: 0.95rem;
+    color: #333;
+    border-top: 1px solid #ccc;
+    margin-top: 40px;
+}
 
+.bottom-line p {
+    margin: 8px 0;
+}
+
+.bottom-line i {
+    color: #333;
+    font-size: 1rem;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.bottom-line .icon {
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
 /* Print Styles */
 @media print {
     /* Hide everything except the A4 sheet */
