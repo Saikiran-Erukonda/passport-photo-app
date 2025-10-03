@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passport Photo Automation</title>
+    <title>Free Passport Photo Maker - Print A4 Sheet Online | PassPhoto Print</title>
+    <meta name="description" content="Free online passport photo maker. Create and print 35x45mm passport photos on A4 sheet. No registration required. Download and print instantly.">
+    <meta name="keywords" content="passport photo, A4 print, passphoto, visa photo, id photo, print passport photos, free passport photo maker, A4 photo sheet, 35x45mm photo">
+    <meta name="author" content="Saikiran Erukonda">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Free Passport Photo Maker - Print A4 Sheet Online">
+    <meta property="og:description" content="Create and print professional passport photos on A4 sheet. Free online tool for visa, ID, and passport applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saikiran-erukonda.github.io/passport-photo-app">
+    <meta property="og:image" content="https://saikiran-erukonda.github.io/passport-photo-app/assets/og-image.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Passport Photo Maker - Print A4 Sheet Online">
+    <meta name="twitter:description" content="Create and print professional passport photos on A4 sheet. Free online tool.">
+    <meta name="twitter:image" content="https://saikiran-erukonda.github.io/passport-photo-app/assets/twitter-image.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://saikiran-erukonda.github.io/passport-photo-app">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    
     <link rel="stylesheet" href="styles/styles.css">
     
     <meta http-equiv="Content-Security-Policy" 
@@ -12,12 +36,35 @@
                    style-src 'self' 'unsafe-inline';
                    img-src 'self' data: blob:;">
     <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Passport Photo Automation - A4 Print",
+      "description": "Free online tool to create and print passport photos on A4 sheet",
+      "url": "https://yourusername.github.io/passport-photo-app",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Saikiran Erukonda"
+      }
+    }
+    </script>
 </head>
 <body>
     <div class="container">
         <header role="banner">
-            <h1>Passport Photo Automation</h1>
-            <p class="subtitle">Upload, crop, enhance and print professional passport photos</p>
+            <h1>Free Passport Photo Maker - Print A4 Sheet Online</h1>
+            <p class="subtitle">Create professional 35x45mm passport photos and print 25 copies on single A4 sheet. Free online tool for visa, ID, and passport applications.</p>
         </header>
         
         <nav aria-label="Progress steps" class="workflow">
@@ -43,8 +90,8 @@
         <main class="content-area">
             <!-- Step 1: Upload Photo -->
             <section class="step-content active" id="step1-content" aria-labelledby="step1-heading">
-                <h2 id="step1-heading">Upload Your Photo</h2>
-                <p>Select a high-quality photo with good lighting for best results.</p>
+                <h2 id="step1-heading">Upload Your Photo for Passport Print</h2>
+                <p>Select a high-quality photo with good lighting. We'll automatically format it to standard 35x45mm passport size for A4 printing.</p>
                 
                 <div class="upload-area" id="uploadArea" role="button" tabindex="0" aria-label="Upload photo area">
                     <div class="upload-icon" aria-hidden="true">📷</div>
@@ -66,11 +113,11 @@
             
             <!-- Step 2: Crop & Enhance -->
             <section class="step-content" id="step2-content" aria-labelledby="step2-heading" hidden>
-                <h2 id="step2-heading">Crop & Enhance Your Photo</h2>
-                <p>Crop your photo to the standard passport size (3.5cm × 4.5cm) and adjust enhancement settings.</p>
+                <h2 id="step2-heading">Optimize Your Passport Photo</h2>
+                <p>Automatically cropped to standard passport size (35mm × 45mm). Adjust enhancement settings for perfect print quality.</p>
                 
                 <div class="image-preview">
-                    <img id="cropPreview" src="" alt="Photo for cropping and enhancement">
+                    <img id="cropPreview" src="" alt="Passport photo ready for A4 printing">
                 </div>
                 
                 <div class="controls" aria-label="Photo enhancement controls">
@@ -105,8 +152,8 @@
             
             <!-- Step 3: A4 Layout -->
             <section class="step-content" id="step3-content" aria-labelledby="step3-heading" hidden>
-                <h2 id="step3-heading">A4 Photo Sheet Layout</h2>
-                <p>Your passport photos arranged on an A4 sheet (5×5 grid, 25 photos total).</p>
+                <h2 id="step3-heading">A4 Photo Sheet Layout - 25 Passport Photos</h2>
+                <p>Your passport photos arranged on an A4 sheet (5×5 grid, 25 photos total). Perfect for multiple copies or family applications.</p>
 
                 <div class="border-options">
                     <h4>Border Style (Screen Only)</h4>
@@ -115,11 +162,11 @@
                         <button class="border-btn" data-color="black">Black Border</button>
                         <button class="border-btn" data-color="none">No Border</button>
                     </div>
-                    <p class="border-note"><small>Note: Photos will always print with thin black borders</small></p>
+                    <p class="border-note"><small>Note: Photos will always print with thin black borders for professional A4 printing</small></p>
                 </div>
 
                 <div class="a4-preview">
-                    <div class="photo-grid" id="photoGrid" aria-label="A4 sheet photo layout preview">
+                    <div class="photo-grid" id="photoGrid" aria-label="A4 sheet with 25 passport photos layout">
                         <!-- Photo cells will be generated by JavaScript -->
                     </div>
                 </div>
@@ -132,17 +179,17 @@
             
             <!-- Step 4: Preview & Print -->
             <section class="step-content" id="step4-content" aria-labelledby="step4-heading" hidden>
-                <h2 id="step4-heading">Preview & Print</h2>
-                <p>Review your A4 photo sheet and print when ready.</p>
+                <h2 id="step4-heading">Preview & Print Your A4 Passport Photo Sheet</h2>
+                <p>Review your A4 photo sheet and print when ready. Get 25 professional passport photos from single A4 sheet.</p>
                 
                 <div class="print-instructions">
-                    <p><strong>Print Tips:</strong> Use "Actual Size" in print settings for best results</p>
-                    <p>Margins should be set to "None" or "Minimum" for proper alignment</p>
-                    <p><strong>Note:</strong> Photos will print with thin black borders for professional results</p>
+                    <p><strong>Print Tips for Best Results:</strong> Use "Actual Size" in print settings</p>
+                    <p>Set margins to "None" or "Minimum" for proper alignment</p>
+                    <p><strong>Perfect for:</strong> Passport applications, Visa photos, ID cards, Driver's license</p>
                 </div>
                 
                 <div class="a4-preview">
-                    <div class="photo-grid" id="finalGrid" aria-label="Final A4 sheet for printing">
+                    <div class="photo-grid" id="finalGrid" aria-label="Final A4 sheet with 25 passport photos ready for printing">
                         <!-- Final photo grid for printing -->
                     </div>
                 </div>
@@ -150,7 +197,7 @@
                 <div class="print-options" aria-label="Print quality options">
                     <div class="option-card selected" data-quality="standard" role="button" tabindex="0">
                         <h3>Standard Quality</h3>
-                        <p>Good for most printers</p>
+                        <p>Good for most home printers</p>
                     </div>
                     <div class="option-card" data-quality="high" role="button" tabindex="0">
                         <h3>High Quality</h3>
@@ -160,10 +207,49 @@
                 
                 <div class="button-group">
                     <button class="btn btn-outline" id="backStep4">Back</button>
-                    <button class="btn" id="printBtn">🖨️ Print Photo Sheet</button>
+                    <button class="btn" id="printBtn">🖨️ Print A4 Photo Sheet</button>
                 </div>
             </section>
         </main>
+
+        <!-- SEO Content Section -->
+        <section class="seo-content" aria-label="About Passport Photo Printing">
+            <div class="content-area">
+                <h2>Free Online Passport Photo Maker - Print on A4 Sheet</h2>
+                <p>Create professional <strong>passport photos</strong> and print them on <strong>A4 paper</strong> with our free online tool. Our <strong>passphoto A4 print</strong> service helps you save money and time by allowing you to print multiple passport-sized photos (35x45mm) on a single A4 sheet.</p>
+                
+                <h3>Why Use Our Passport Photo Printing Tool?</h3>
+                <ul>
+                    <li><strong>Free to Use</strong> - No registration, no watermarks, completely free</li>
+                    <li><strong>Print 25 Photos</strong> - Get 25 passport photos from one A4 sheet</li>
+                    <li><strong>Standard Sizes</strong> - Perfect 35mm x 45mm dimensions for official documents</li>
+                    <li><strong>Instant Download</strong> - Ready to print in seconds</li>
+                    <li><strong>No Software</strong> - Works directly in your browser</li>
+                </ul>
+
+                <h3>How to Create Passport Photos for A4 Printing</h3>
+                <ol>
+                    <li><strong>Upload Your Photo</strong> - Select a clear, well-lit headshot</li>
+                    <li><strong>Auto-Crop & Enhance</strong> - Our tool automatically formats to passport size</li>
+                    <li><strong>A4 Layout</strong> - Photos arranged in 5x5 grid on A4 sheet</li>
+                    <li><strong>Print & Save</strong> - Print directly or save PDF for later</li>
+                </ol>
+
+                <h3>Perfect For All Document Types</h3>
+                <p>Our <strong>A4 passport photo print</strong> service is ideal for:</p>
+                <ul>
+                    <li>Passport applications and renewals</li>
+                    <li>Visa applications (tourist, business, student)</li>
+                    <li>ID cards and driver's licenses</li>
+                    <li>Work permits and residence cards</li>
+                    <li>School and college applications</li>
+                    <li>Job applications and professional profiles</li>
+                </ul>
+
+                <h3>Keywords Related to Passport Photo Printing</h3>
+                <p>passport photo maker, A4 photo print, passphoto print, visa photo printer, ID photo creator, print passport photos at home, free passport photo app, A4 sheet photos, 35x45mm photo print, online photo tool, passport size photo maker, print photos on A4, photo printing software, digital passport photo, official document photos</p>
+            </div>
+        </section>
     </div>
     
 
@@ -174,6 +260,7 @@
         <span class="icon-text">Deepseek.ai</span>
         </p>
         <p>Dedicated to All Selfless, Helping, Hardworking People</p>
+        <p class="seo-footer">Free Passport Photo Maker | A4 Print Tool | Online Photo Printing | PassPhoto Print Service</p>
     </footer>
 
     <script src="scripts/script.js"></script>

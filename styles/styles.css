@@ -113,7 +113,49 @@ h1 {
 .step-content.active {
     display: block;
 }
+/* SEO Content Styles */
+.seo-content {
+    margin-top: 40px;
+}
 
+.seo-content h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.seo-content h3 {
+    color: #34495e;
+    margin: 25px 0 15px 0;
+    font-size: 1.4rem;
+}
+
+.seo-content p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.seo-content ul, .seo-content ol {
+    margin: 15px 0;
+    padding-left: 30px;
+}
+
+.seo-content li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.seo-content strong {
+    color: #2575fc;
+}
+
+.seo-footer {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 15px;
+    font-style: italic;
+}
 /* Improved text spacing */
 .step-content h2 {
     font-size: 1.8rem;
@@ -593,7 +635,20 @@ h1 {
 #printBtn:hover {
     background-color: #218838;
 }
-
+/* Ensure good content structure */
+@media (max-width: 768px) {
+    .seo-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .seo-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .seo-content ul, .seo-content ol {
+        padding-left: 20px;
+    }
+}
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .workflow {
