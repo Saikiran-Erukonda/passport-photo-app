@@ -31,14 +31,18 @@ A web application to create professional passport photos and arrange them on A4 
 ## File Structure
 ```
 passport-photo-app/
-├── index.html # Main application
-├── styles/
-│ └── style.css # All styling
-├── scripts/
-│ └── script.js # Application logic
 ├── assets/
-│ └── placeholder.jpg # Default placeholder
-└── README.md # This file
+│   ├── favicon.ico
+│   ├── apple-touch-icon.png
+│   ├── og-image.png
+│   └── twitter-image.png
+├── styles/
+│   └── styles.css
+├── scripts/
+│   └── script.js
+├── index.html
+├── sitemap.xml
+└── robots.txt
 ```
 
 
