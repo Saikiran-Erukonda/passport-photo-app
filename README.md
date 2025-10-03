@@ -1,8 +1,6 @@
-# **passport-photo-app**
-Web app for easy creating passport photos &amp; print on A4 sheets
-# #My New Project
-# Passport Photo Automation
 
+# **Passport Photo Automation**
+**Live Demo**: https://saikiran-erukonda.github.io/passport-photo-app/
 A web application to create professional passport photos and arrange them on A4 sheets for printing.
 
 ## Features
@@ -73,13 +71,13 @@ MIT License - feel free to use for personal or commercial projects.
 ## Support
 
 For issues or questions, please check the browser console for errors and ensure you're using a supported browser.
-```
 
 ## 🔧 Local Development
-
 1. Clone repository:
 ```bash
 git clone https://github.com/saikiran-erukonda/passport-photo-app.git
 ```
+2. Open index.html in browser or use Live Server
 -------------------------------------------------
-Deployed via GitHub Pages | Report Issue
+Deployed via GitHub Pages | [Report Issue](https://github.com/saikiran-erukonda/passport-photo-app/issues)
+
