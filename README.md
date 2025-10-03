@@ -1,6 +1,7 @@
 
 # **Passport Photo Automation**
 **Live Demo**: https://saikiran-erukonda.github.io/passport-photo-app/
+
 A web application to create professional passport photos and arrange them on A4 sheets for printing.
 
 ## Features
