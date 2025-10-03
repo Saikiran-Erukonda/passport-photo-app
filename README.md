@@ -83,4 +83,3 @@ git clone https://github.com/saikiran-erukonda/passport-photo-app.git
 ```
 -------------------------------------------------
 Deployed via GitHub Pages | Report Issue
->>>>>>> master
