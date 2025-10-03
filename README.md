@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-# passport-photo-app
+# **passport-photo-app**
 Web app for easy creating passport photos &amp; print on A4 sheets
 =======
-# My New Project
+# #My New Project
 # Passport Photo Automation
 
 A web application to create professional passport photos and arrange them on A4 sheets for printing.
