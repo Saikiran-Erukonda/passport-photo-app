@@ -28,7 +28,7 @@ let currentStep = 1;
 let originalImage = null;
 let processedImage = null;
 let selectedQuality = 'standard';
-let selectedBorder = 'black';
+let selectedBorder = 'grey'; // Default to grey border
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', initializeApp);
@@ -170,8 +170,10 @@ function updateStepContent(step) {
     stepContents.forEach((content, index) => {
         if (index + 1 === step) {
             content.classList.add('active');
+            content.hidden = false;
         } else {
             content.classList.remove('active');
+            content.hidden = true;
         }
     });
 }
@@ -255,6 +257,7 @@ function applyEnhancements(imageElement, brightness = null, contrast = null, sat
         saturate(${sat}%)
     `;
 }
+
 // Border Options Functions
 function setupBorderOptions() {
     const borderButtons = document.querySelectorAll('.border-btn');
@@ -282,14 +285,10 @@ function applyBorderToAllImages(borderColor) {
 
 function applyBorderToImage(img, borderColor) {
     // Remove all border classes
-    img.classList.remove('border-grey', 'border-black', 'border-blue', 'border-none');
+    img.classList.remove('border-grey', 'border-black', 'border-none');
     
-    // Apply selected border
-    if (borderColor !== 'none') {
-        img.classList.add(`border-${borderColor}`);
-    } else {
-        img.classList.add('border-none');
-    }
+    // Apply selected border class
+    img.classList.add(`border-${borderColor}`);
 }
 
 // Print Options Functions
@@ -310,115 +309,189 @@ function setupPrintOptions() {
     });
 }
 
-
 // Print Functions
 function handlePrint() {
-    // Create a temporary print-friendly version
-    const printContent = createPrintVersion();
-    
-    // Open print dialog for the A4 sheet only
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(printContent);
-    printWindow.document.close();
-    
-    // Wait for images to load before printing
-    printWindow.onload = function() {
-        setTimeout(() => {
-            printWindow.print();
-            // Optional: Close window after printing
-            printWindow.close();
-        }, 500);
-    };
+    const originalText = printBtn.innerHTML;
+    printBtn.innerHTML = '⏳ Preparing for Print...';
+    printBtn.disabled = true;
+
+    try {
+        const printContent = createPrintVersion();
+        const printWindow = window.open('', '_blank', 'width=800,height=600');
+
+        if (!printWindow) {
+            alert('Please allow popups for this site to print.');
+            resetPrintButton(originalText);
+            return;
+        }
+
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+
+        // Flag to prevent multiple triggers
+        let hasHandledPrint = false;
+
+        printWindow.onload = function () {
+            setTimeout(() => {
+                printWindow.focus();
+                printWindow.print();
+            }, 500);
+        };
+
+        // Handle both print and cancel
+        printWindow.onafterprint = function () {
+            if (!hasHandledPrint) {
+                hasHandledPrint = true;
+                printWindow.close();
+                resetPrintButton(originalText);
+            }
+        };
+    } catch (error) {
+        console.error('Print preparation error:', error);
+        alert('Error preparing print. Please try again.');
+        resetPrintButton(originalText);
+    }
+}
+
+function resetPrintButton(originalText) {
+    printBtn.innerHTML = originalText;
+    printBtn.disabled = false;
 }
 
 function createPrintVersion() {
+    // Create a deep clone of the final grid
     const a4Sheet = document.getElementById('finalGrid').cloneNode(true);
     
-    // Apply black border for printing regardless of selection
+    // Force black borders for all images in print version
     const images = a4Sheet.querySelectorAll('img');
     images.forEach(img => {
-        img.style.border = '0.6px solid rgba(0, 0, 0, 1)';
+        // Remove all existing border classes
+        img.classList.remove('border-grey', 'border-black', 'border-none');
+        // Add black border class
+        img.classList.add('border-black');
+        // Set inline styles as primary method (more reliable for print)
+        img.style.border = '1px solid #000000';
+        img.style.boxSizing = 'border-box';
+        img.style.webkitPrintColorAdjust = 'exact';
+        img.style.colorAdjust = 'exact';
     });
-    
+
     return `
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Passport Photos - A4 Sheet</title>
-        <style>
-            body { 
-                margin: 0; 
-                padding: 0; 
-                background: white;
-                -webkit-print-color-adjust: exact;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Passport Photos - A4 Sheet</title>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        
+        body { 
+            margin: 0 !important; 
+            padding: 0 !important; 
+            background: white !important;
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            width: 210mm !important;
+            height: 297mm !important;
+        }
+        
+        .photo-grid {
+            display: grid !important;
+            grid-template-columns: repeat(5, 1fr) !important;
+            grid-template-rows: repeat(5, 1fr) !important;
+            gap: 2mm !important;
+            width: 210mm !important;
+            height: 297mm !important;
+            padding: 10mm !important;
+            box-sizing: border-box !important;
+            page-break-inside: avoid !important;
+            border: 1px solid #ccc !important;
+            margin: 0 auto !important;
+            background: white !important;
+        }
+        
+        .photo-cell {
+            background-color: white !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            position: relative !important;
+            border: none !important;
+        }
+        
+        .photo-cell img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            border: 1px solid #000000 !important;
+            box-sizing: border-box !important;
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        
+        @page {
+            margin: 0 !important;
+            size: A4 !important;
+        }
+        
+        @media print {
+            html, body {
+                width: 210mm !important;
+                height: 297mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
+            
             .photo-grid {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                grid-template-rows: repeat(5, 1fr);
-                gap: 3mm;
-                width: 100%;
-                height: 100vh;
-                padding: 10mm;
-                box-sizing: border-box;
-                page-break-inside: avoid;
+                width: 210mm !important;
+                height: 297mm !important;
+                margin: 0 !important;
+                border: 1px solid #000 !important;
             }
-            .photo-cell {
-                background-color: #f5f5f5;
-                border: 1px solid #ccc;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-            }
+            
             .photo-cell img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border: 0.5px solid #000 !important;
+                border: 1px solid #000000 !important;
             }
-            @page {
-                margin: 0;
-                size: A4;
-            }
-            @media print {
-                body { margin: 0; }
-                .photo-grid { 
-                    margin: 0;
-                    border: 1px solid #000;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        ${a4Sheet.outerHTML}
-        <script>
-            // Force images to load before printing
-            window.onload = function() {
-                const images = document.querySelectorAll('img');
-                let loadedCount = 0;
-                const totalImages = images.length;
-                
-                images.forEach(img => {
-                    if (img.complete) {
-                        loadedCount++;
-                    } else {
-                        img.onload = () => {
-                            loadedCount++;
-                            if (loadedCount === totalImages) {
-                                window.print();
-                            }
-                        };
-                    }
-                });
-                
-                if (loadedCount === totalImages) {
-                    setTimeout(() => window.print(), 100);
-                }
-            };
-        </script>
-    </body>
-    </html>`;
+        }
+    </style>
+</head>
+<body>
+    ${a4Sheet.outerHTML}
+    <script>
+        // Force apply styles and wait for everything to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Double-check all images have borders
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.style.border = '1px solid #000000';
+                img.style.boxSizing = 'border-box';
+            });
+            
+            // Small delay to ensure all styles are applied
+            setTimeout(function() {
+                window.print();
+            }, 500);
+        });
+        
+        // Fallback in case DOMContentLoaded already fired
+        setTimeout(function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.style.border = '1px solid #000000';
+                img.style.boxSizing = 'border-box';
+            });
+            window.print();
+        }, 1000);
+    </script>
+</body>
+</html>`;
 }
 
 // Utility Functions
@@ -445,6 +518,4 @@ function resetEnhancements() {
 // Export functions for global access if needed
 window.resetEnhancements = resetEnhancements;
 
-// Add this to scripts/script.js for testing
-console.log('🚀 App loaded successfully!');
-// Check browser console (F12) for this message
+console.log('🚀 Passport Photo App loaded successfully!');

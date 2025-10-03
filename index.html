@@ -10,88 +10,89 @@
           content="default-src 'self'; 
                    script-src 'self' 'unsafe-inline'; 
                    style-src 'self' 'unsafe-inline';
-                   img-src 'self' data:;">
+                   img-src 'self' data: blob:;">
     <meta name="referrer" content="no-referrer-when-downgrade">
 </head>
 <body>
     <div class="container">
-        <header>
+        <header role="banner">
             <h1>Passport Photo Automation</h1>
             <p class="subtitle">Upload, crop, enhance and print professional passport photos</p>
         </header>
         
-        <div class="workflow">
+        <nav aria-label="Progress steps" class="workflow">
             <div class="workflow-line"></div>
-            <div class="step active" id="step1">
-                <div class="step-circle">1</div>
+            <div class="step active" id="step1" aria-current="step">
+                <div class="step-circle" aria-hidden="true">1</div>
                 <div class="step-label">Upload Photo</div>
             </div>
             <div class="step" id="step2">
-                <div class="step-circle">2</div>
+                <div class="step-circle" aria-hidden="true">2</div>
                 <div class="step-label">Crop & Enhance</div>
             </div>
             <div class="step" id="step3">
-                <div class="step-circle">3</div>
+                <div class="step-circle" aria-hidden="true">3</div>
                 <div class="step-label">A4 Layout</div>
             </div>
             <div class="step" id="step4">
-                <div class="step-circle">4</div>
+                <div class="step-circle" aria-hidden="true">4</div>
                 <div class="step-label">Preview & Print</div>
             </div>
-        </div>
+        </nav>
         
-        <div class="content-area">
+        <main class="content-area">
             <!-- Step 1: Upload Photo -->
-            <div class="step-content active" id="step1-content">
-                <h2>Upload Your Photo</h2>
+            <section class="step-content active" id="step1-content" aria-labelledby="step1-heading">
+                <h2 id="step1-heading">Upload Your Photo</h2>
                 <p>Select a high-quality photo with good lighting for best results.</p>
                 
-                <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">📷</div>
+                <div class="upload-area" id="uploadArea" role="button" tabindex="0" aria-label="Upload photo area">
+                    <div class="upload-icon" aria-hidden="true">📷</div>
                     <h3>Click to upload or drag and drop</h3>
                     <p>Supported formats: JPG, PNG, WEBP (Max 5MB)</p>
-                    <input type="file" id="fileInput" accept="image/*" class="hidden">
+                    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" class="hidden" aria-describedby="fileInputHelp">
                 </div>
+                <div id="fileInputHelp" class="sr-only">Select a photo file to upload for your passport photo</div>
                 
-                <div class="image-preview hidden" id="imagePreview">
-                    <img id="previewImage" src="" alt="Preview">
+                <div class="image-preview hidden" id="imagePreview" aria-live="polite">
+                    <img id="previewImage" src="" alt="Uploaded photo preview">
                 </div>
                 
                 <div class="button-group">
                     <div></div>
                     <button class="btn" id="nextStep1" disabled>Next: Crop & Enhance</button>
                 </div>
-            </div>
+            </section>
             
             <!-- Step 2: Crop & Enhance -->
-            <div class="step-content" id="step2-content">
-                <h2>Crop & Enhance Your Photo</h2>
+            <section class="step-content" id="step2-content" aria-labelledby="step2-heading" hidden>
+                <h2 id="step2-heading">Crop & Enhance Your Photo</h2>
                 <p>Crop your photo to the standard passport size (3.5cm × 4.5cm) and adjust enhancement settings.</p>
                 
                 <div class="image-preview">
-                    <img id="cropPreview" src="" alt="Crop Preview">
+                    <img id="cropPreview" src="" alt="Photo for cropping and enhancement">
                 </div>
                 
-                <div class="controls">
+                <div class="controls" aria-label="Photo enhancement controls">
                     <div class="control-group">
-                        <label class="control-label">Brightness</label>
+                        <label for="brightnessSlider" class="control-label">Brightness</label>
                         <div class="slider-container">
-                            <input type="range" min="-50" max="50" value="0" class="slider" id="brightnessSlider">
-                            <span class="slider-value" id="brightnessValue">0</span>
+                            <input type="range" min="-50" max="50" value="0" class="slider" id="brightnessSlider" aria-valuetext="0 percent">
+                            <span class="slider-value" id="brightnessValue" aria-live="polite">0</span>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Contrast</label>
+                        <label for="contrastSlider" class="control-label">Contrast</label>
                         <div class="slider-container">
-                            <input type="range" min="-50" max="50" value="0" class="slider" id="contrastSlider">
-                            <span class="slider-value" id="contrastValue">0</span>
+                            <input type="range" min="-50" max="50" value="0" class="slider" id="contrastSlider" aria-valuetext="0 percent">
+                            <span class="slider-value" id="contrastValue" aria-live="polite">0</span>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Saturation</label>
+                        <label for="saturationSlider" class="control-label">Saturation</label>
                         <div class="slider-container">
-                            <input type="range" min="-50" max="50" value="0" class="slider" id="saturationSlider">
-                            <span class="slider-value" id="saturationValue">0</span>
+                            <input type="range" min="-50" max="50" value="0" class="slider" id="saturationSlider" aria-valuetext="0 percent">
+                            <span class="slider-value" id="saturationValue" aria-live="polite">0</span>
                         </div>
                     </div>
                 </div>
@@ -100,24 +101,25 @@
                     <button class="btn btn-outline" id="backStep2">Back</button>
                     <button class="btn" id="nextStep2">Next: A4 Layout</button>
                 </div>
-            </div>
+            </section>
             
             <!-- Step 3: A4 Layout -->
-            <div class="step-content" id="step3-content">
-                <h2>A4 Photo Sheet Layout</h2>
+            <section class="step-content" id="step3-content" aria-labelledby="step3-heading" hidden>
+                <h2 id="step3-heading">A4 Photo Sheet Layout</h2>
                 <p>Your passport photos arranged on an A4 sheet (5×5 grid, 25 photos total).</p>
 
-                <!-- <div class="border-options">
-                    <h4>Border Style</h4>
+                <div class="border-options">
+                    <h4>Border Style (Screen Only)</h4>
                     <div class="border-buttons">
                         <button class="border-btn active" data-color="grey">Grey Border</button>
                         <button class="border-btn" data-color="black">Black Border</button>
                         <button class="border-btn" data-color="none">No Border</button>
                     </div>
-                </div> -->
+                    <p class="border-note"><small>Note: Photos will always print with thin black borders</small></p>
+                </div>
 
                 <div class="a4-preview">
-                    <div class="photo-grid" id="photoGrid">
+                    <div class="photo-grid" id="photoGrid" aria-label="A4 sheet photo layout preview">
                         <!-- Photo cells will be generated by JavaScript -->
                     </div>
                 </div>
@@ -126,30 +128,31 @@
                     <button class="btn btn-outline" id="backStep3">Back</button>
                     <button class="btn" id="nextStep3">Next: Preview & Print</button>
                 </div>
-            </div>
+            </section>
             
             <!-- Step 4: Preview & Print -->
-            <div class="step-content" id="step4-content">
-                <h2>Preview & Print</h2>
+            <section class="step-content" id="step4-content" aria-labelledby="step4-heading" hidden>
+                <h2 id="step4-heading">Preview & Print</h2>
                 <p>Review your A4 photo sheet and print when ready.</p>
                 
                 <div class="print-instructions">
                     <p><strong>Print Tips:</strong> Use "Actual Size" in print settings for best results</p>
                     <p>Margins should be set to "None" or "Minimum" for proper alignment</p>
+                    <p><strong>Note:</strong> Photos will print with thin black borders for professional results</p>
                 </div>
                 
                 <div class="a4-preview">
-                    <div class="photo-grid" id="finalGrid">
+                    <div class="photo-grid" id="finalGrid" aria-label="Final A4 sheet for printing">
                         <!-- Final photo grid for printing -->
                     </div>
                 </div>
                 
-                <div class="print-options">
-                    <div class="option-card selected" data-quality="standard">
+                <div class="print-options" aria-label="Print quality options">
+                    <div class="option-card selected" data-quality="standard" role="button" tabindex="0">
                         <h3>Standard Quality</h3>
                         <p>Good for most printers</p>
                     </div>
-                    <div class="option-card" data-quality="high">
+                    <div class="option-card" data-quality="high" role="button" tabindex="0">
                         <h3>High Quality</h3>
                         <p>Best for professional printing</p>
                     </div>
@@ -159,21 +162,20 @@
                     <button class="btn btn-outline" id="backStep4">Back</button>
                     <button class="btn" id="printBtn">🖨️ Print Photo Sheet</button>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
     
 
-    <footer class="bottom-line">
-    <p>Designed by <strong>Saikiran Erukonda</strong> |
-        Thanks to 
-    <img src="assets/github-icon.png" alt="Github" class="icon"> GitHub and 
-    <img src="assets/deepseek-icon.png" alt="Deepseek.ai" class="icon"> Deepseek.ai
-    </p>
-    <p>Dedicated to All Selfless, Helping, Hardworking People</p>
+    <footer class="bottom-line" role="contentinfo">
+        <p>Designed by <strong>Saikiran Erukonda</strong> |
+            Thanks to 
+        <span class="icon-text">GitHub</span> and 
+        <span class="icon-text">Deepseek.ai</span>
+        </p>
+        <p>Dedicated to All Selfless, Helping, Hardworking People</p>
     </footer>
 
     <script src="scripts/script.js"></script>
 </body>
-
 </html>
